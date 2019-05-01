@@ -18,5 +18,26 @@ class Competition < ApplicationRecord
     presence: true,
     numericality: { only_integer: true, greater_than: 0 }
 
+  def finish
+    update finished: true
+  end
 
+  def ranking
+    results
+      .select(value: criteria_to_win)
+      .group(:athlete_id)
+      .order(value: results_order)
+  end
+
+  def winner
+    if finished?
+      ranking.first
+    end
+  end
+
+  private
+
+  def results_order
+    criteria_to_win == "max" ? "desc" : "asc"
+  end
 end
