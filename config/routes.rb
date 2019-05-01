@@ -3,4 +3,6 @@ Rails.application.routes.draw do
     patch 'finish', on: :member
     put 'finish', on: :member
   end
+
+  resources :results, only: [ :show, :create ], defaults: { format: :json }
 end
