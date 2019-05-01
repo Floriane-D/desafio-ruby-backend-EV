@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  unit: MyString
+  finished: false
+  criteria_to_win: MyString
+  max_number_of_attempts: 1
+
+two:
+  name: MyString
+  unit: MyString
+  finished: false
+  criteria_to_win: MyString
+  max_number_of_attempts: 1
