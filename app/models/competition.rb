@@ -24,15 +24,8 @@ class Competition < ApplicationRecord
 
   def ranking
     results
-      .select(value: criteria_to_win)
       .group(:athlete_id)
       .order(value: results_order)
-  end
-
-  def winner
-    if finished?
-      ranking.first
-    end
   end
 
   private
