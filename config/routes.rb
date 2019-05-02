@@ -4,5 +4,5 @@ Rails.application.routes.draw do
     put 'finish', on: :member
   end
 
-  resources :results, only: [ :show, :create ], defaults: { format: :json }
+  resources :results, only: [ :index, :show, :create, :destroy ], defaults: { format: :json }
 end

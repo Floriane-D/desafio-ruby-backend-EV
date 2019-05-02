@@ -1,7 +1,11 @@
 class ResultsController < ApplicationController
-  before_action :set_result, only: :show
+  before_action :set_result, only: [ :show, :destroy ]
   before_action :set_competition, only: :create
   before_action :set_athlete, only: :create
+
+  def index
+    @results = Result.all
+  end
 
   def show
   end
@@ -13,6 +17,11 @@ class ResultsController < ApplicationController
     else
       render_error
     end
+  end
+
+  def destroy
+    @result.destroy
+    head :no_content
   end
 
   private
