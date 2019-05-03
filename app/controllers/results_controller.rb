@@ -2,6 +2,7 @@ class ResultsController < ApplicationController
   before_action :set_result, only: [ :show, :destroy ]
   before_action :set_competition, only: :create
   before_action :set_athlete, only: :create
+  skip_before_action :verify_authenticity_token # desactivating CSRF
 
   def index
     @results = Result.all
@@ -32,8 +33,8 @@ class ResultsController < ApplicationController
 
   def set_competition
     unless params[:competition_id].present?
-      competition = Competition.new(name: params[:competition])
-      competition.unit = params[:unit] if params[:unit].present?
+      competition = Competition.new(name: params[:competition], unit: params[:unit])
+      competition.save!
       params[:competition_id] = competition.id
     end
   end
@@ -41,6 +42,7 @@ class ResultsController < ApplicationController
   def set_athlete
     unless params[:athlete_id].present?
       athlete = Athlete.new(name: params[:athlete])
+      athlete.save!
       params[:athlete_id] = athlete.id
     end
   end
