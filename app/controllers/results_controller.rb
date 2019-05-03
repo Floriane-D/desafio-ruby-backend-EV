@@ -33,7 +33,9 @@ class ResultsController < ApplicationController
 
   def set_competition
     unless params[:competition_id].present?
-      competition = Competition.new(name: params[:competition], unit: params[:unit])
+      competition = Competition.new(name: params[:competition], unit:params[:unit])
+      competition.max_number_of_attempts = params[:max_number_of_attempts] if params[:max_number_of_attempts].present?
+      competition.criteria_to_win = params[:criteria_to_win] if params[:criteria_to_win].present?
       competition.save!
       params[:competition_id] = competition.id
     end
