@@ -24,7 +24,7 @@ bundle install
 
 ### Preparação do banco de dados
 
-a API usa o SQLite 3 como banco de dados. Para prepará-lo, é preciso executar os comandos abaixo:
+A API usa o SQLite 3 como banco de dados. Para prepará-lo, é preciso executar os comandos abaixo:
 
 ```
 bundle install rake db:create (para criar a database)
@@ -49,6 +49,7 @@ bundle exec rails s
 ```
 A API agora roda na porta 3000.
 
+
 ## API
 
 O objectivo da API é gerir as competições dos Jogos Olímpicos.
@@ -71,15 +72,13 @@ Cada competição tem os seguintes parâmetros:
 
 Para cadastrar uma competição, é necessário passar os parâmetros obrigatórios (e os opcionais, caso tenham) no comando.
 
-Exemplo
+Exemplo:
 
 ```
-
 curl -s -X POST -d "name=Salto em altura&unit=m" http://localhost:3000/competitions | jq
-
 ```
 
-##### Retorno:
+Retorno:
 
 ```
 {
@@ -91,12 +90,11 @@ curl -s -X POST -d "name=Salto em altura&unit=m" http://localhost:3000/competiti
   "max_number_of_attempts": 1,
   "ranking": []
 }
-
 ```
 
 #### Visualização de todas as competições: GET /competitions
 
-A visualização de todas as competições mostra os parâmetros de cada competição, sem o ranking.
+A visualização de todas as competições mostra os parâmetros de cada competição, sem o ranking dos resultados.
 
 Exemplo:
 
@@ -183,7 +181,7 @@ Retorno:
       "value": 12.0
     },
     {
-      "name": "Walker Rosenbaum",
+      "name": "Walker Murray",
       "athlete_id": 4,
       "value": 14.1
     }
@@ -219,7 +217,7 @@ Retorno:
 
 #### Finalização de uma competição : PATCH /competitions/id/finish
 
-A finalização de uma competição vai encerrá-la.
+A finalização de uma competição vai encerrá-la. A API não vai mais aceptar cadastramento de resultados para essa competição.
 
 Exemplo:
 
@@ -278,7 +276,6 @@ curl -s -X DELETE http://localhost:3000/competitions/3 | jq
 Retorno:
 
 ```
-
 ```
 É normal que a supressão de uma competição não retorna nada.
 
@@ -299,9 +296,7 @@ Se a competição e o atleta já estejam cadastrados, precisa apenas passar nos 
 Exemplo com competição e atletas existentes:
 
 ```
-
 curl -s -X POST -d "competition_id=2&athlete_id=4&value=99" http://localhost:3000/results | jq
-
 ```
 
 Retorno:
@@ -313,7 +308,6 @@ Retorno:
   "athlete_name": "Jaimee Rosenbaum",
   "competition_name": "Dardo semifinal"
 }
-
 ```
 
 #### Competição e/ou atleta ainda não cadastrados
@@ -331,6 +325,7 @@ Parâmetros opcionais:
 * **max_number_of_attempts** (default: 1)
 * **criteria_to_win** (default: max)
 
+
 Exemplo com atleta ainda não cadastrado:
 
 ```
@@ -346,7 +341,6 @@ Retorno:
   "athlete_name": "Usain Bolt",
   "competition_name": "100m final"
 }
-
 ```
 Exemplo com competição ainda não cadastrada:
 
@@ -381,3 +375,8 @@ Retorno:
   "competition_name": "Lançamento de martelo"
 }
 ```
+
+## Sugestões
+
+Obrigada por ter usado essa API.
+Fique à vontade para entrar em contato comigo, para esclarecer qualquer dúvida ou para compartilhar suas opiniões e comentários.
