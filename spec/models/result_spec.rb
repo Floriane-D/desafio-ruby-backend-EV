@@ -36,12 +36,12 @@ RSpec.describe Result, type: :model do
   end
 end
 
-describe "result from competition with only one_attempt" do
+describe "Result from competition with only one attempt" do
   before(:each) do
     @result = build(:result_from_competition_with_only_one_attempt)
   end
 
-  it "is not valid if the athlete already made his attempt for this competition" do
+  it "cannot be added if the athlete already made his attempt" do
     @result.save
     new_attempt = Result.new(competition: @result.competition,
                             athlete: @result.athlete,
@@ -50,12 +50,12 @@ describe "result from competition with only one_attempt" do
   end
 end
 
-describe "result from competition with several attempts" do
+describe "Result from competition with several attempts" do
   before(:each) do
     @result = build(:result_from_competition_with_several_attempts)
   end
 
-  it "is valid if the athlete can still make an attempt for this competition" do
+  it "can be added if the athlete still has available attempt(s)" do
     @result.save
     new_attempt = Result.new(competition: @result.competition,
                             athlete: @result.athlete,

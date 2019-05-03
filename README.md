@@ -16,7 +16,7 @@ git clone https://github.com/Floriane-D/desafio-ruby-backend-EV.git
 
 ### Instalação das dependências
 
-Depois, é necessário instalar as dependências, executando o comando abaixo:
+Uma vez na pasta da API, favor instalar as dependências, executando o comando abaixo:
 
 ```
 bundle install
@@ -27,9 +27,9 @@ bundle install
 A API usa o SQLite 3 como banco de dados. Para prepará-lo, é preciso executar os comandos abaixo:
 
 ```
-bundle install rake db:create (para criar a database)
-bundle install rake db:migrate (para criar as tabelas de competições, atletas e resultados)
-bundle install rake db:seed (para criar exemplos de competições, atletas e resultados)
+rake db:create (para criar a database)
+rake db:migrate (para criar as tabelas de competições, atletas e resultados)
+rake db:seed (para criar exemplos de competições, atletas e resultados)
 ```
 
 ### Testes

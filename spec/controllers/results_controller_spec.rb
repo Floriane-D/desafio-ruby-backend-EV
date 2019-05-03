@@ -41,20 +41,10 @@ RSpec.describe ResultsController, type: :controller do
   end
 
   describe "Create" do
-    context "with valid params" do
-      it "creates a new result" do
-        expect {
-          post :create, params: { format: :json }.merge(valid_attributes), session: valid_session
-        }.to change(Result, :count).by(1)
-      end
-    end
-
-    context "with invalid params" do
-      it "returns errors" do
-        post :create, params: { format: :json }.merge(invalid_attributes), session: valid_session
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq("application/json")
-      end
+    it "creates a new result" do
+      expect {
+        post :create, params: { format: :json }.merge(valid_attributes), session: valid_session
+      }.to change(Result, :count).by(1)
     end
   end
 
